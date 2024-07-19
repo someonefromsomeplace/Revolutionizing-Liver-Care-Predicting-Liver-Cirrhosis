@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="htpps://fonts.googleapis.com/css2?
+family=Josefin+Sans:wght@100;200;300;400;500;600;700@display=swap" rel="stylesheet">
+<style>
+
+*{
+padding:0;
+margin:0;
+box-sizing:border-box;
+font-family: 'Josefin Sans', sans-serif;
+}
+
+section{
+padding: 40px 15%;
+}
+
+.contact{
+background: #101010;
+height:100%;
+width:100%;
+min-height:100vh;
+display:grid;
+grid-template-columns:repeat(2, 2fr);
+align-item:center;
+grid-gap:6rem;
+}
+
+.contact-img img{
+max-width:100%;
+width:720px;
+height:auto;
+border-radius:10px;
+}
+
+.contact-form h1{
+font-size:72px;
+color:#fff;
+margin-bottom:20px;
+}
+
+span{
+color:#009688;
+}
+
+.contact-form p{
+color:#c6c9d8bf;
+letter-spacing:1px;
+line-height:26px;
+font-size:1.1rem;
+margin-bottom: 3.8rem;
+}
+
+.contact-form form{
+position: relative;
+}
+
+.contact-form form input,
+form textarea{
+width:100%;
+padding: 17px;
+border:none;
+outline:none;
+background:#191919;
+color:#fff;
+font-size:1.1rem;
+margin-bottom:0.7rem;
+border-radius:10px;
+}
+
+.contact-form textarea{
+resize:none;
+height:200px;
+}
+
+.contact-form form .btn{
+display: inline-block;
+background:#009688;
+font-size:1.1 reml
+letter-spacing: 1px;
+text-transform: uppercase;
+font-weight:600l
+border: 2px solid transparent;
+border-radius: 10px;
+width: 220px;
+transition: ease .20s;
+cursor: pointer;
+}
+
+.contact-form form .btn:hover{
+border: 2px solid #009688;
+background: transparent;
+transform: scale(1,1);
+}
+
+@media(max-width: 1570 px){
+section{
+padding:80px 3%;
+transition: .2s;
+}
+.contact-form h1{
+font-size:60px;
+}
+.contact-form p{
+margin-bottom:3rem;
+}
+}
+
+@media(max-width: 1090 px){
+.contact{
+grid-gap:2rem;
+transition:.3s;
+}
+}
+
+@media(max-width: 1000 px){
+.contact{
+grid-template-columns: 1fr;
+}
+.contact-form{
+order:2;
+}
+.contact-img img{
+max-width:100%;
+width:100%;
+height:auto;
+text-align:center;
+margin-bottom: 30px;
+}
+}
+
+</style>
+</head>
+<body>
+<section class="contact">
+<div class="contact-form">
+<h1>Contact<span> Us</span></h1>
+<p>We are committed to continuous improvement and welcome any feedback or inquiries. Please feel free to reach out to us for more information about our model, collaboration opportunities, or any other questions you might have.</p>
+<form action="">
+<input type="" placeholder="Your Name" required>
+<input type="email" name="email" id="" placeholder="E-mail" required>
+<input type="" placeholder="Write a subject" required>
+<textarea name="" id="" cols="30" rows="10" placeholder="Your Message" required>
+
+</textarea>
+<input type="submit" name="" value="Submit" class="btn">
+</form>
+<p>Thank you for visiting our platform, and we look forward to contributing to better health outcomes with you.</p>
+</div>
+
+<div class="contact-img">
+<br><br><br><br><br><br><br>
+<img src="/static/contactt.jpg">
+</div>
+</section>
+</body>
+</html>

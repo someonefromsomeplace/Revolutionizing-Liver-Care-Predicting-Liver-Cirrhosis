@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url("{{ url_for('static', filename='Untitled design.png') }}");
+          background-size: cover;
+          background-position: center;
+      <!--background: url('bg-image.jpg') no-repeat center center/cover;-->
+    }
+
+    .container {
+      width: 100%;
+      max-width: 2000px;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 28px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
+      max-height: calc(100vh - 40px); /* Adjusted for full viewport height minus margins */
+    }
+
+    .form-title {
+      font-size: 26px;
+      font-weight: 600;
+      text-align: center;
+      padding-bottom: 6px;
+      color: white;
+      text-shadow: 2px 2px 2px black;
+      border-bottom: solid 1px white;
+      margin-bottom: 20px;
+    }
+
+    .main-user-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 20px 0;
+    }
+
+    .user-input-box {
+      flex: 1 1 calc(33% - 40px);
+      max-width: calc(33% - 40px);
+    }
+
+    .user-input-box label {
+      color: white;
+      font-size: 16px;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .user-input-box input,
+    .user-input-box select,
+    .user-input-box textarea {
+      width: 100%;
+      height: 40px;
+      border-radius: 7px;
+      outline: none;
+      border: 1px solid grey;
+      padding: 0 10px;
+      background: #191919;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .user-input-box textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    .radio-title {
+      color: white;
+      font-size: 16px;
+      margin-bottom: 10px;
+      width: 100%;
+      display: block;
+    }
+
+    .radio-category {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .radio-category label {
+      color: white;
+      cursor: pointer;
+    }
+
+    .form-submit-btn {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .form-submit-btn input {
+      width: 200px;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      background: #009688;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .form-submit-btn input:hover {
+      background: transparent;
+      border:2px solid #009688;
+    }
+
+    @media (max-width: 768px) {
+      .user-input-box {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+    }
+    
+    .result-container {
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .result {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="form-title">Liver Cirrhosis Prediction</h1>
+    
+    <form action="/predict" method="POST">
+      <div class="main-user-info">
+      
+        <div class="user-input-box">
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age" placeholder="Enter Age" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label class="radio-title">Gender</label>
+          <div class="radio-category">
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+            <input type="radio" id="transgender" name="gender" value="transgender">
+            <label for="transgender">Transgender</label>
+          </div>
+        </div>
+        
+        <div class="user-input-box">
+          <label class="radio-title">Place</label>
+          <div class="radio-category">
+            <input type="radio" id="urban" name="place" value="urban">
+            <label for="urban">Urban</label>
+            <input type="radio" id="rural" name="place" value="rural">
+            <label for="rural">Rural</label>
+          </div>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="alcohol-duration">Duration of Alcohol Consumption</label>
+          <input type="number" id="alcohol-duration" name="alcohol-duration" placeholder="Enter Duration in Years" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="alcohol-quantity">Quantity of Alcohol Consumption</label>
+          <input type="number" id="alcohol-quantity" name="alcohol-quantity" placeholder="Enter Quantity in Liters/Week" required>
+        </div>
+        
+    	<div class="user-input-box">
+          <label class="radio-title">Type of Alcohol</label>
+          <div class="radio-category">
+            <input type="radio" id="branded" name="alctype" value="branded liquor">
+            <label for="branded">Branded</label>
+            <input type="radio" id="country" name="alctype" value="country liquor">
+            <label for="country">Country</label>
+	    <input type="radio" id="both" name="alctype" value="both">
+            <label for="both">Both</label>
+          </div>
+        </div>
+        
+        <div class="user-input-box">
+          <label class="radio-title">Hepatitis B</label>
+          <div class="radio-category">
+            <input type="radio" id="negative" name="hepatitis-b" value="negative">
+            <label for="negative">negative</label>
+            <input type="radio" id="Positive" name="hepatitis-b" value="Positive">
+            <label for="Positive">Positive</label>
+          </div>
+        </div>
+        
+        <div class="user-input-box">
+          <label class="radio-title">Hepatitis C</label>
+          <div class="radio-category">
+            <input type="radio" id="negative" name="hepatitis-c" value="negative">
+            <label for="negative">negative</label>
+            <input type="radio" id="Positive" name="hepatitis-c" value="Positive">
+            <label for="Positive">Positive</label>
+          </div>
+        </div>
+        
+        <div class="user-input-box">
+          <label class="radio-title">Diabetes result</label>
+          <div class="radio-category">
+            <input type="radio" id="yes" name="diabetes" value="YES">
+            <label for="yes">YES</label>
+            <input type="radio" id="no" name="diabetes" value="NO">
+            <label for="no">NO</label>
+          </div>
+        </div>     
+        
+        <div class="user-input-box">
+          <label for="blood-pressure1">Blood Pressure(sys)</label>
+          <input type="number" id="blood-pressure1" name="blood-pressure1" placeholder="Enter Blood Pressure(sys)" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="blood-pressure2">Blood Pressure(dia)</label>
+          <input type="number" id="blood-pressure2" name="blood-pressure2" placeholder="Enter Blood Pressure(dia)" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label class="radio-title">Obesity</label>
+          <div class="radio-category">
+            <input type="radio" id="yes-obesity" name="obesity" value="yes">
+            <label for="yes-obesity">Yes</label>
+            <input type="radio" id="no-obesity" name="obesity" value="no">
+            <label for="no-obesity">No</label>
+          </div>
+        </div>
+        
+        <div class="user-input-box">
+          <label class="radio-title">Family History</label>
+          <div class="radio-category">
+            <input type="radio" id="yes-family" name="family-history" value="yes">
+            <label for="yes-family">Yes</label>
+            <input type="radio" id="no-family" name="family-history" value="no">
+            <label for="no-family">No</label>
+          </div>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="tch">TCH</label>
+          <input type="number" id="tch" name="tch" step="0.01" placeholder="Enter TCH" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="tg">TG</label>
+          <input type="number" id="tg" name="tg" step="0.01" placeholder="Enter TG" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="ldl">LDL</label>
+          <input type="number" id="ldl" name="ldl" step="0.01" placeholder="Enter LDL" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="hdl">HDL</label>
+          <input type="number" id="hdl" name="hdl" step="0.01" placeholder="Enter HDL" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="hemoglobin">Hemoglobin</label>
+          <input type="number" id="hemoglobin" name="hemoglobin" step="0.01" placeholder="Enter Hemoglobin level" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="pcv">PCV</label>
+          <input type="number" id="pcv" name="pcv" step="0.01" placeholder="Enter PCV" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="rbc">RBC</label>
+          <input type="number" id="rbc" name="rbc" step="0.01" placeholder="Enter RBC count" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="mcv">MCV</label>
+          <input type="number" id="mcv" name="mcv" step="0.01" placeholder="Enter MCV" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="mch">MCH</label>
+          <input type="number" id="mch" name="mch" step="0.01" placeholder="Enter MCH" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="mchc">MCHC</label>
+          <input type="number" id="mchc" name="mchc" step="0.01" placeholder="Enter MCHC" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="total-count">Total Count</label>
+          <input type="number" id="total-count" name="total-count" step="0.01" placeholder="Enter Total Count" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="polymorphs">Polymorphs</label>
+          <input type="number" id="polymorphs" name="polymorphs" step="0.01" placeholder="Enter Polymorphs" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="lymphocytes">Lymphocytes</label>
+          <input type="number" id="lymphocytes" name="lymphocytes" step="0.01" placeholder="Enter Lymphocytes" required>
+        </div>
+        
+    	<div class="user-input-box">
+          <label for="monocytes">Monocytes</label>
+          <input type="number" id="monocytes" name="monocytes" step="0.01" placeholder="Enter Monocytes" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="eosinophils">Eosinophils</label>
+          <input type="number" id="eosinophils" name="eosinophils" step="0.01" placeholder="Enter Eosinophils" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="basophils">Basophils</label>
+          <input type="number" id="basophils" name="basophils" step="0.01" placeholder="Enter Basophils" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="platelet-count">Platelet Count</label>
+          <input type="number" id="platelet-count" name="platelet-count" step="0.01" placeholder="Enter Platelet Count" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="total-bilirubin">Total Bilirubin</label>
+          <input type="number" id="total-bilirubin" name="total-bilirubin" step="0.01" placeholder="Enter Total Bilirubin value" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="direct">Direct</label>
+          <input type="number" id="direct" name="direct" step="0.01" placeholder="Enter Direct value" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="indirect">Indirect</label>
+          <input type="number" id="indirect" name="indirect" step="0.01" placeholder="Enter Indirect value" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="total-protein">Total Protein</label>
+          <input type="number" id="total-protein" name="total-protein" step="0.01" placeholder="Enter Total Protein" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="albumin">Albumin</label>
+          <input type="number" id="albumin" name="albumin" step="0.01" placeholder="Enter Albumin" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="globulin">Globulin</label>
+          <input type="number" id="globulin" name="globulin" step="0.01" placeholder="Enter Globulin" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="al-phosphatase">AL Phosphatase</label>
+          <input type="number" id="al-phosphatase" name="al-phosphatase" step="0.01" placeholder="Enter AL Phosphatase" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="sgot-ast">SGOT/AST</label>
+          <input type="number" id="sgot-ast" name="sgot-ast" placeholder="Enter SGOT/AST" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label for="sgpt-alt">SGPT/ALT</label>
+          <input type="number" id="sgpt-alt" name="sgpt-alt" placeholder="Enter SGPT/AlT" required>
+        </div>
+        
+        <div class="user-input-box">
+          <label class="radio-title">USG Abdomen</label>
+          <div class="radio-category">
+            <input type="radio" id="yes-usg" name="usg-abdomen" value="YES">
+            <label for="yes-usg">Yes</label>
+            <input type="radio" id="no-usg" name="usg-abdomen" value="no">
+            <label for="no-usg">No</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-submit-btn">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+    <br><br><br><br>
+      <div class="result-container">
+    <h1>Prediction Result</h1>
+    <p class="result">{{ predict }}</p>
+    <!--
+    <p class="result">The prediction value is: {{ prediction_value }}</p>
+    <p class="result">The input_df is: {{ innput }}</p>
+    <p class="result">The p value is: {{ pp }}
+    -->
+    <!--<p class="result">The x_test value is: {{ x_test }}</p>-->
+  </div>
+  </div>
+</body>
+</html>
