@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>About Us</title>
+<style>
+*{
+padding:0;
+margin:0;
+font-family:'Josefin Sans',sans-serif;
+box-sizing:border-box;
+}
+
+.about{
+width:100%;
+padding:78px 0px;
+background-color: #191919;
+<!--background-image: url("{{ url_for('static', filename='business.png') }}");-->
+    background-size: cover;
+    background-position: center;
+}
+
+.about img{
+height: auto;
+width: 420px;
+}
+
+.about-text{
+width:550px;
+}
+
+.main{
+width: 1130px;
+max-width: 95%;
+margin: 0 auto;
+display: flex;
+align-items: center;
+justify-content: space-around;
+}
+
+.about-text h1{
+color: white;
+font-size: 80px;
+text-transform: capitalize;
+margin-bottom: 20px;
+}
+.about-text h5{
+color: white;
+font-size: 25px;
+text-transform: capitalize;
+margin-bottom: 25px;
+letter-spacing:2px;
+}
+
+span{
+color: #009688;
+}
+
+.about-text p{
+color: #fcfc;
+letter-spacing:1px;
+line-height:28px;
+font-size:18px;
+margin-bottom:45px;
+}
+
+button{
+background: #009688;
+color:white;
+text-decoration:none;
+border: 2px solid transparent;
+font-weight: bold;
+padding: 13px 30px;
+border-radius: 30px;
+transition: .4s;
+}
+
+button:hover{
+background:transparent;
+border:2px solid #009688;
+cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+<section class="about">
+<div class="main">
+<img src="/static/aboutt.jpeg">
+<div class="about-text">
+<h1>About<span> Us</span></h1>
+<!--<h5>Developer <span>& Designer</span></h5>-->
+<p>Welcome to our Liver Cirrhosis Detection platform! Our team, comprising Saiprasad Pandilwar, Chandrakala K, Niranchna Natarajan and Gopika Nambiar, has developed an advanced machine learning model designed to assist in the early detection of liver cirrhosis. By analyzing a variety of blood parameters, our model can provide valuable insights that may help in the diagnosis and management of this serious condition.</p>
+<!--<button type="button">Let's Talk</button>-->
+<p>Our mission is to leverage the power of technology to improve healthcare. We aim to provide a reliable and accessible tool for medical practitioners to aid in the early detection of liver cirrhosis, ultimately enhancing the quality of care and patient well-being.</p>
+</div>
+</div>
+</section>
+
+</body>
+</html>
